@@ -329,11 +329,68 @@ export default function AdminDashboardPage() {
     if (!file) return;
 
     setIsUploading(true);
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('alt', uploadAlt || file.name);
 
     try {
+      const isVideo = file.type.startsWith('video/');
+
+      if (isVideo) {
+        const presignRes = await fetch('/api/admin/media/presign', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fileName: file.name,
+            contentType: file.type,
+          }),
+        });
+
+        const presignData = await presignRes.json();
+        if (!presignRes.ok || !presignData.success) {
+          showToast(presignData.error || '视频上传初始化失败。', 'error');
+          return;
+        }
+
+        const uploadRes = await fetch(presignData.uploadUrl, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': file.type,
+          },
+          body: file,
+        });
+
+        if (!uploadRes.ok) {
+          showToast('视频直传到云端失败。', 'error');
+          return;
+        }
+
+        const registerRes = await fetch('/api/admin/media/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fileName: file.name,
+            url: presignData.fileUrl,
+            alt: uploadAlt || file.name,
+            size: file.size,
+            contentType: file.type,
+          }),
+        });
+
+        const registerData = await registerRes.json();
+        if (registerRes.ok && registerData.success) {
+          showToast('视频上传成功。');
+          setMediaList(prev => [registerData.media, ...prev]);
+          setUploadAlt('');
+          if (fileInputRef.current) fileInputRef.current.value = '';
+        } else {
+          showToast(registerData.error || '视频登记失败。', 'error');
+        }
+
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('alt', uploadAlt || file.name);
+
       const res = await fetch('/api/admin/media', {
         method: 'POST',
         body: formData

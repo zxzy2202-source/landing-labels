@@ -5,6 +5,7 @@ import * as schema from './schema';
 const isProduction = process.env.NODE_ENV === 'production' || !!process.env.VERCEL;
 const url = process.env.TURSO_DATABASE_URL;
 const authToken = process.env.TURSO_AUTH_TOKEN;
+const usesRemoteTurso = !!url && !url.startsWith('file:');
 
 if (isProduction && !url) {
   throw new Error(
@@ -14,7 +15,7 @@ if (isProduction && !url) {
 
 export const client = createClient({
   url: url || 'file:local.db',
-  authToken: isProduction ? authToken : undefined,
+  authToken: usesRemoteTurso ? authToken : undefined,
 });
 
 export const db = drizzle(client, { schema });

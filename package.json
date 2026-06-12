@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node -e \"try{require('fs').unlinkSync('./nul')}catch(e){}\" && next dev",
+    "dev": "node -e \"try{require('fs').unlinkSync('./nul')}catch(e){}\" && next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1064.0",
+    "@aws-sdk/s3-request-presigner": "^3.1064.0",
     "@libsql/client": "^0.17.3",
     "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.2",

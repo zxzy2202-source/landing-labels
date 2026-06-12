@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
 import { mediaFiles } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
           },
         });
 
-        const bucketName = process.env.R2_BUCKET_NAME || 'zxpapers';
+        const bucketName = process.env.R2_BUCKET_NAME || 'landing-labels';
 
         // 1. Upload original file
         await r2Client.send(
