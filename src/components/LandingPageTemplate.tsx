@@ -7,6 +7,7 @@ import ProductCenter from './ProductCenter';
 import Heritage from './Heritage';
 import FAQ from './FAQ';
 import Certifications from './Certifications';
+import LogisticsShowcase from './LogisticsShowcase';
 import Services from './Services';
 import ContactForm from './ContactForm';
 import Footer from './Footer';

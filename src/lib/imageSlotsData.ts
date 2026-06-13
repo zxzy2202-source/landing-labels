@@ -14,5 +14,6 @@ export const DEFAULT_SLOTS: Record<string, string> = {
   products_cat_3: 'https://gozhumeng.com/wp-content/uploads/zhixin-paper-eco-friendly-bpa-free-fsc-certified-labels.webp',
   products_cat_4: 'https://gozhumeng.com/wp-content/uploads/zhixin-paper-luxury-gold-foil-thank-you-custom-labels.webp',
   certifications_img: 'https://gozhumeng.com/wp-content/uploads/zhixin-paper-factory-certifications-iso-fda-fsc-sgs.webp',
+  logistics_intro_img: 'https://gozhumeng.com/wp-content/uploads/Reliable-Global-Shipping-Bulk-Logistics-for-High-Volume-Label-Orders.webp',
   logo_footer: 'https://gozhumeng.com/wp-content/uploads/Zhixin-Paper-logo-Professional-thermal-label-and-adhesive-label-manufacturer.png',
 };

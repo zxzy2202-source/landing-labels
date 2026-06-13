@@ -115,12 +115,13 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
         }
         .hero-container-v2 p b { color: #ffffff !important; border-bottom: 2px solid var(--zx-primary); }
 
-        .tech-pills-wrap-v2 {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 15px;
-          margin-bottom: 50px;
-        }
+          .tech-pills-wrap-v2 {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 15px;
+            margin-bottom: 50px;
+          }
+
 
         .pill-item-v2 {
           background: rgba(255,255,255,0.15);
@@ -166,10 +167,12 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
             padding: 100px 20px 60px; 
             min-height: auto; 
             min-height: 100svh; 
-            background-size: 100% 100%; 
+            background-size: cover; 
+            background-position: center center;
           }
           .hero-container-v2 { text-align: center; }
-          .tech-pills-wrap-v2 { justify-content: center; }
+          .tech-pills-wrap-v2 { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: center; }
+          .pill-item-v2 { white-space: normal; min-height: 58px; }
           .btn-group-v2 { flex-direction: column; align-items: center; }
           .btn-action-v2 { width: 100%; max-width: 360px; }
         }

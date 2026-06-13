@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { DEFAULT_SLOTS } from '@/lib/imageSlotsData';
 
 interface VanguardProps {
@@ -9,15 +9,24 @@ interface VanguardProps {
 
 export const Vanguard: React.FC<VanguardProps> = ({ resolvedUrls }) => {
   const videoUrl = resolvedUrls?.['vanguard_video'] || DEFAULT_SLOTS['vanguard_video'];
+  const posterUrl = resolvedUrls?.['hub_video_poster'] || DEFAULT_SLOTS['hub_video_poster'];
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [canPlayVideo, setCanPlayVideo] = React.useState(false);
 
   const statsRef = useRef<HTMLDListElement>(null);
 
   useEffect(() => {
-    const v = videoRef.current;
-    if (v) {
-      v.play().catch(() => {});
+    if (typeof window === 'undefined') return;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) {
+      setCanPlayVideo(true);
+      const v = videoRef.current;
+      if (v) {
+        v.play().catch(() => {});
+      }
+      return;
     }
+    setCanPlayVideo(false);
   }, []);
 
   useEffect(() => {
@@ -205,15 +214,35 @@ export const Vanguard: React.FC<VanguardProps> = ({ resolvedUrls }) => {
         @media (max-width: 768px) { 
           .zx-vanguard { 
             min-height: 70vh; 
-          } 
+          }
+
+          .vanguard-container {
+            gap: 1.1rem;
+            padding: 1.6rem 1rem;
+          }
+
+          .v-body p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+          }
         }
       ` }} />
 
       <section className="zx-vanguard" aria-labelledby="vanguard-title">
         <h2 id="vanguard-title" className="visually-hidden" style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>Company Overview Video</h2>
-        <video ref={videoRef} className="vanguard-video" autoPlay muted loop playsInline preload="auto">
-          <source src={videoUrl} type="video/mp4" />
-        </video>
+        {canPlayVideo ? (
+          <video ref={videoRef} className="vanguard-video" autoPlay muted loop playsInline preload="metadata" poster={resolvedUrls?.['hub_video_poster'] || DEFAULT_SLOTS['hub_video_poster']}>
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={resolvedUrls?.['hub_video_poster'] || DEFAULT_SLOTS['hub_video_poster']}
+            alt="Zhixin Paper factory overview and production capability"
+            className="vanguard-video"
+            loading="lazy"
+            decoding="async"
+          />
+        )}
         <div className="vanguard-overlay"></div>
         <div className="vanguard-container">
           <div className="v-headline">
@@ -249,3 +278,4 @@ export const Vanguard: React.FC<VanguardProps> = ({ resolvedUrls }) => {
 };
 
 export default Vanguard;
+
