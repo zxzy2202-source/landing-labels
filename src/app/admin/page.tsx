@@ -1891,23 +1891,3 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
-                       >
-                            <Save className="w-4.5 h-4.5" />
-                            保存自定义覆盖
-                          </button>
-                        </div>
-
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-            </div>
-          )}
-        </div>
-
-      </main>
-    </div>
-  );
-}
