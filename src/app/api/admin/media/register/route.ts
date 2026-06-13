@@ -10,9 +10,10 @@ export async function POST(req: NextRequest) {
     const alt = typeof body.alt === 'string' ? body.alt : '';
     const size = typeof body.size === 'number' ? body.size : 0;
     const contentType = typeof body.contentType === 'string' ? body.contentType : '';
+    const thumbUrl = typeof body.thumbUrl === 'string' ? body.thumbUrl : url;
 
-    if (!fileName || !url || !contentType.startsWith('video/')) {
-      return NextResponse.json({ error: 'Invalid video registration payload' }, { status: 400 });
+    if (!fileName || !url || (!contentType.startsWith('video/') && !contentType.startsWith('image/'))) {
+      return NextResponse.json({ error: 'Invalid media registration payload' }, { status: 400 });
     }
 
     const id = typeof crypto !== 'undefined' && crypto.randomUUID
@@ -27,7 +28,7 @@ export async function POST(req: NextRequest) {
       height: 0,
       alt: alt || fileName,
       size,
-      webpThumbUrl: url,
+      webpThumbUrl: thumbUrl,
       createdAt: new Date(),
     };
 

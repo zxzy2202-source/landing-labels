@@ -1486,14 +1486,23 @@ export default function AdminDashboardPage() {
                           {filteredMedia.map((media) => {
                             const isSelectedCopy = copiedUrl === media.url;
                             const kbSize = media.size ? Math.round(media.size / 102.4) / 10 : 0;
+                            const isVideo = /\.(mp4|mov|m4v|webm|ogg)$/i.test(media.fileName) || /\/video\//i.test(media.url) || media.url.endsWith('.mp4');
                             return (
                               <div key={media.id} className="group relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
                                 <div className="aspect-video bg-gray-100 relative overflow-hidden flex items-center justify-center p-3">
-                                  <img
-                                    src={media.webpThumbUrl}
-                                    alt={media.fileName}
-                                    className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                                  />
+                                  {isVideo ? (
+                                    <div className="w-full h-full flex flex-col items-center justify-center text-center px-4">
+                                      <div className="text-3xl mb-2">🎬</div>
+                                      <p className="text-[11px] font-black text-gray-700 uppercase tracking-wider">视频资源</p>
+                                      <p className="text-[10px] text-gray-400 mt-1 break-all">{media.fileName}</p>
+                                    </div>
+                                  ) : (
+                                    <img
+                                      src={media.webpThumbUrl}
+                                      alt={media.fileName}
+                                      className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                                    />
+                                  )}
                                   <span className="absolute top-2 left-2 px-1.5 py-0.5 bg-black/60 backdrop-blur-sm rounded text-[8px] font-black text-white uppercase tracking-wider">
                                     {kbSize} KB
                                   </span>
@@ -1863,6 +1872,26 @@ export default function AdminDashboardPage() {
                             onClick={handleProductFormSave}
                             className="px-5 py-2 bg-[#007d85] hover:bg-[#1a2a3a] text-white rounded text-xs font-black uppercase tracking-wider flex items-center gap-1.5 transition-all"
                           >
+                            <Save className="w-4.5 h-4.5" />
+                            保存自定义覆盖
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+            </div>
+          )}
+        </div>
+
+      </main>
+    </div>
+  );
+}
+                       >
                             <Save className="w-4.5 h-4.5" />
                             保存自定义覆盖
                           </button>
