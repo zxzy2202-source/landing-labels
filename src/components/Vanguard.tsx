@@ -97,14 +97,14 @@ export const Vanguard: React.FC<VanguardProps> = ({ resolvedUrls }) => {
           object-fit: cover; 
           transform: translate(-50%, -50%) scale(1.05); 
           z-index: 1; 
-          background-color: var(--zx-dark-navy); 
+          background-color: transparent; 
         }
         
         @media (max-width: 768px) { 
           .vanguard-video { 
-            object-fit: contain; 
+            object-fit: cover; 
             object-position: center center; 
-            background-color: var(--zx-dark-navy); 
+            background-color: transparent; 
           } 
         }
         

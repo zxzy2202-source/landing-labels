@@ -181,7 +181,7 @@ export const FluidHub: React.FC<FluidHubProps> = ({ resolvedUrls }) => {
                 opacity: isPlaying ? 0 : 1,
                 display: isPlaying ? 'none' : 'block'
               }} 
-              loading="eager" 
+              loading="lazy" 
               decoding="async" 
             />
             {!isPlaying && (

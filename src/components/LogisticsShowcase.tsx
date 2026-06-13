@@ -19,10 +19,9 @@ export const LogisticsShowcase: React.FC<LogisticsShowcaseProps> = ({ resolvedUr
         .zx-logistics-card {
           max-width: 1280px;
           margin: 0 auto;
-          display: grid;
-          grid-template-columns: minmax(320px, 520px) 1fr;
-          gap: 2rem;
-          align-items: center;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
           background: #ffffff;
           border: 1px solid rgba(0, 125, 133, 0.12);
           border-radius: 18px;
@@ -31,7 +30,9 @@ export const LogisticsShowcase: React.FC<LogisticsShowcaseProps> = ({ resolvedUr
         }
 
         .zx-logistics-visual {
-          min-height: 100%;
+          width: 100%;
+          aspect-ratio: 16 / 7;
+          min-height: 320px;
           background: #dfe9ec;
         }
 
@@ -39,6 +40,7 @@ export const LogisticsShowcase: React.FC<LogisticsShowcaseProps> = ({ resolvedUr
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center center;
           display: block;
         }
 
