@@ -353,9 +353,6 @@ export default function AdminDashboardPage() {
 
         const uploadRes = await fetch(presignData.uploadUrl, {
           method: 'PUT',
-          headers: {
-            'Content-Type': contentType,
-          },
           body: file,
         });
 
