@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (!contentType.startsWith('video/')) {
-      return NextResponse.json({ error: 'This endpoint only supports video uploads' }, { status: 400 });
+      return NextResponse.json({ error: `Unsupported video content type: ${contentType}` }, { status: 400 });
     }
 
     const safeFileName = `${Date.now()}-${fileName.replace(/[^a-zA-Z0-9.-]/g, '_')}`;

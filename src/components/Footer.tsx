@@ -188,7 +188,7 @@ export const Footer: React.FC<FooterProps> = ({ resolvedUrls }) => {
           
           <div className="f-col f-links">
             <nav aria-label="Product Solutions Footer">
-              <h4>Solutions</h4>
+              <p className="footer-heading">Solutions</p>
               <ul>
                 <li><a href="#products" aria-label="View Jar and Bottle Label solutions">Jar & Bottle Labels</a></li>
                 <li><a href="#products" aria-label="View Cosmetic Packaging stickers">Cosmetic Packaging</a></li>
@@ -199,7 +199,7 @@ export const Footer: React.FC<FooterProps> = ({ resolvedUrls }) => {
           
           <div className="f-col f-links">
             <nav aria-label="Site Quick Links Footer">
-              <h4>Quick Links</h4>
+              <p className="footer-heading">Quick Links</p>
               <ul>
                 <li><a href="#home" aria-label="Back to Top of the page">Back to Top</a></li>
                 <li><a href="#contact" aria-label="Request a direct factory quote">Request a Quote</a></li>
@@ -208,7 +208,7 @@ export const Footer: React.FC<FooterProps> = ({ resolvedUrls }) => {
           </div>
           
           <div className="f-col f-contact">
-            <h4>Contact Info</h4>
+            <p className="footer-heading">Contact Info</p>
             <div className="contact-item">
               <i aria-hidden="true">📍</i>
               <address style={{ fontStyle: 'normal' }}>

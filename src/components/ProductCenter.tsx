@@ -405,18 +405,16 @@ export const ProductCenter: React.FC<ProductCenterProps> = ({ products, resolved
         <div className="grid-gallery" id="galleryGrid" role="list">
           {data && (
             <>
-              <div className="main-feat-card" role="button" onClick={goToContact}>
-                <img src={catMainImg} alt={data.category} width="800" height="450" loading="lazy" decoding="async" />
-              </div>
+              <button type="button" className="main-feat-card" onClick={goToContact} aria-label={`Inquire about ${data.category}`}>
+                <img src={catMainImg} alt={data.category} width="800" height="450" loading="eager" decoding="async" />
+              </button>
               {data.items.map((item) => (
-                <div 
+                <button
                   key={item.title}
+                  type="button"
                   className="p-card"
-                  tabIndex={0}
-                  role="button"
                   aria-label={`View details for ${item.title}`}
                   onClick={() => openModal(item)}
-                  onKeyDown={(e) => { if(e.key === 'Enter') openModal(item); }}
                 >
                   <div className="p-img-box">
                     <img src={item.img} alt={item.title} width="120" height="80" loading="lazy" decoding="async" />
@@ -426,7 +424,7 @@ export const ProductCenter: React.FC<ProductCenterProps> = ({ products, resolved
                     <p>{item.desc}</p>
                     <div className="btn-sm" aria-hidden="true">Inquiry</div>
                   </div>
-                </div>
+                </button>
               ))}
             </>
           )}

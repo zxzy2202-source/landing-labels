@@ -46,15 +46,17 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   return (
     <div id="home">
       <Header resolvedUrls={resolvedUrls} />
-      <Hero heroConfig={heroConfig} resolvedUrls={resolvedUrls} />
-      <Vanguard resolvedUrls={resolvedUrls} />
-      <FluidHub resolvedUrls={resolvedUrls} />
-      <ProductCenter products={products} resolvedUrls={resolvedUrls} />
-      <Heritage />
-      <FAQ />
-      <Certifications resolvedUrls={resolvedUrls} />
-      <Services />
-      <ContactForm />
+      <main id="main-content" role="main">
+        <Hero heroConfig={heroConfig} resolvedUrls={resolvedUrls} />
+        <Vanguard resolvedUrls={resolvedUrls} />
+        <FluidHub resolvedUrls={resolvedUrls} />
+        <ProductCenter products={products} resolvedUrls={resolvedUrls} />
+        <Heritage />
+        <FAQ />
+        <Certifications resolvedUrls={resolvedUrls} />
+        <Services />
+        <ContactForm />
+      </main>
       <Footer resolvedUrls={resolvedUrls} />
       <WhatsAppWidget />
     </div>

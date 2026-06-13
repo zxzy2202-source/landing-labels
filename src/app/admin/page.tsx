@@ -331,15 +331,17 @@ export default function AdminDashboardPage() {
     setIsUploading(true);
 
     try {
-      const isVideo = file.type.startsWith('video/');
+      const inferredVideo = !file.type && /\.(mp4|mov|m4v|webm|ogg)$/i.test(file.name);
+      const isVideo = file.type.startsWith('video/') || inferredVideo;
 
       if (isVideo) {
+        const contentType = file.type || 'video/mp4';
         const presignRes = await fetch('/api/admin/media/presign', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             fileName: file.name,
-            contentType: file.type,
+            contentType,
           }),
         });
 
@@ -352,13 +354,14 @@ export default function AdminDashboardPage() {
         const uploadRes = await fetch(presignData.uploadUrl, {
           method: 'PUT',
           headers: {
-            'Content-Type': file.type,
+            'Content-Type': contentType,
           },
           body: file,
         });
 
         if (!uploadRes.ok) {
-          showToast('视频直传到云端失败。', 'error');
+          const uploadText = await uploadRes.text();
+          showToast(`视频直传到云端失败：${uploadRes.status} ${uploadText.slice(0, 120)}`, 'error');
           return;
         }
 
@@ -370,7 +373,7 @@ export default function AdminDashboardPage() {
             url: presignData.fileUrl,
             alt: uploadAlt || file.name,
             size: file.size,
-            contentType: file.type,
+            contentType,
           }),
         });
 
@@ -405,7 +408,8 @@ export default function AdminDashboardPage() {
         showToast(data.error || '图片上传失败。', 'error');
       }
     } catch (err) {
-      showToast('网络错误，上传文件失败。', 'error');
+      const message = err instanceof Error ? err.message : '网络错误，上传文件失败。';
+      showToast(message, 'error');
     } finally {
       setIsUploading(false);
     }

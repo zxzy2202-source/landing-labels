@@ -217,7 +217,7 @@ export const Vanguard: React.FC<VanguardProps> = ({ resolvedUrls }) => {
         <div className="vanguard-overlay"></div>
         <div className="vanguard-container">
           <div className="v-headline">
-            <h4>OUR CRAFT</h4>
+            <p className="eyebrow">OUR CRAFT</p>
             <h2>Empowering Global Brands with Precision Labeling Technology</h2>
           </div>
           <div className="v-body">
