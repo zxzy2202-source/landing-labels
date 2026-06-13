@@ -59,7 +59,7 @@ export const ContactForm: React.FC = () => {
 
       if (res.ok) {
         // Redirect to thank you page
-        window.location.href = "https://gozhumeng.com/thank-you/";
+        window.location.href = "/thank-you";
       } else {
         const errData = await res.json();
         setErrorMessage(errData?.error || "Submission failed. Please try WhatsApp.");

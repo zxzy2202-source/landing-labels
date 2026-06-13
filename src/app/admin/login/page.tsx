@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md z-10">
         <div className="flex justify-center">
           <img
-            src="https://gozhumeng.com/wp-content/uploads/Zhixin-Paper-logo-Professional-thermal-label-and-adhesive-label-manufacturer.png"
+            src="/vercel.svg"
             alt="知信纸业"
             className="h-12 w-auto bg-white p-2 rounded-md shadow-sm"
           />

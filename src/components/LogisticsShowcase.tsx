@@ -128,15 +128,15 @@ export const LogisticsShowcase: React.FC<LogisticsShowcaseProps> = ({ resolvedUr
             />
           </div>
           <div className="zx-logistics-copy">
-            <span>Global Delivery Assurance</span>
-            <h2 id="logistics-showcase-title">Stable logistics support for urgent launches and recurring label replenishment</h2>
-            <p>From export packing to customs-ready documentation, we help overseas buyers keep label supply predictable across air, sea, rail and truck routes. This section is prepared as an editable slot so you can replace the current logistics visual anytime from the backend.</p>
-            <p>Whether you need sample rush shipping, scheduled bulk replenishment or blind dropshipping support for distributors, the logistics workflow stays aligned with your production calendar and destination market requirements.</p>
+            <span>Global Logistics Support</span>
+            <h2 id="logistics-showcase-title">Reliable shipping support for sample dispatch, bulk replenishment and long-term label programs</h2>
+            <p>Zhixin Paper supports overseas buyers with a practical export workflow covering urgent sample shipments, scheduled bulk delivery and repeat replenishment for long-term label programs. We coordinate packaging, booking rhythm and dispatch timing around your production and launch calendar so your label supply stays stable from trial order to scale-up.</p>
+            <p>For importers, distributors and factory buyers, our team can prepare packing lists, carton marking logic and shipment handoff details in advance, helping reduce communication gaps between production, freight forwarding and destination-side receiving teams.</p>
             <div className="zx-logistics-points" role="list" aria-label="Logistics strengths">
-              <div role="listitem">Air, sea, rail and truck routing options for different urgency levels</div>
-              <div role="listitem">Commercial invoice, packing list and customs support prepared in advance</div>
-              <div role="listitem">Blind dropshipping workflow available for distributors and agency buyers</div>
-              <div role="listitem">Flexible scheduling for sample dispatch, trial orders and repeat production runs</div>
+              <div role="listitem">Air, sea, rail and truck routing options matched to urgency, budget and destination market</div>
+              <div role="listitem">Support for sample dispatch, carton consolidation and repeat purchase shipment scheduling</div>
+              <div role="listitem">Pre-shipment coordination for invoices, packing details and export handoff requirements</div>
+              <div role="listitem">Suitable for global importers, distributors and OEM buyers managing recurring label demand</div>
             </div>
           </div>
         </div>

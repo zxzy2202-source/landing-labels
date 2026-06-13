@@ -55,6 +55,7 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
         <Heritage />
         <FAQ />
         <Certifications resolvedUrls={resolvedUrls} />
+        <LogisticsShowcase resolvedUrls={resolvedUrls} />
         <Services />
         <ContactForm />
       </main>

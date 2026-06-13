@@ -14,7 +14,7 @@ export const ProductCenter: React.FC<ProductCenterProps> = ({ products, resolved
   const [selectedItem, setSelectedItem] = useState<ProductItem | null>(null);
 
   const data = products[activeCategory];
-          const catMainImg = resolvedUrls?.[`products_cat_${activeCategory}`] || data?.mainImg || DEFAULT_SLOTS[`products_cat_${activeCategory}`] || '';
+  const catMainImg = resolvedUrls?.[`products_cat_${activeCategory}`] || DEFAULT_SLOTS[`products_cat_${activeCategory}`] || data?.mainImg || '';
 
   const openModal = (item: ProductItem) => {
     setSelectedItem(item);

@@ -208,7 +208,7 @@ Specifications
   {
     category: "Safety & Eco-Certified",
     tagline: "Compliance First Sustainability",
-    mainImg: "https://gozhumeng.com/wp-content/uploads/zhixin-paper-eco-friendly-bpa-free-fsc-certified-labels.webp",
+    mainImg: "/uploads/zhixin-paper-eco-friendly-bpa-free-fsc-certified-labels.webp",
     items: [
       { title: "Freezer Labels", desc: "Bond instantly to frozen plastic.", longDesc: `Craft
 Cryogenic-grade white BOPP or polyester film with sub-zero acrylic adhesive system. Low-Tg polymer formulation stays flexible where standard adhesives crystallize. Moisture-barrier overcoat prevents ice crystal damage.
