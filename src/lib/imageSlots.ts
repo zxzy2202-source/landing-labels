@@ -31,6 +31,9 @@ export async function getSlottedImage(slotKey: string): Promise<string> {
       if (ORIGINAL_REQUIRED_SLOTS.has(slotKey)) {
         return item.url || item.webpThumbUrl || DEFAULT_SLOTS[slotKey] || '';
       }
+      if (ORIGINAL_REQUIRED_SLOTS.has(slotKey)) {
+        return item.url || item.webpThumbUrl || DEFAULT_SLOTS[slotKey] || '';
+      }
       return item.webpThumbUrl || item.url || DEFAULT_SLOTS[slotKey] || '';
     }
   } catch (error) {

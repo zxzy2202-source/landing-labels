@@ -237,7 +237,7 @@ export const ProductCenter: React.FC<ProductCenterProps> = ({ products, resolved
           display: flex; 
           justify-content: center; 
           align-items: center; 
-          z-index: 10000; 
+          z-index: 1000001; 
           backdrop-filter: blur(5px); 
           padding: 1rem;
           box-sizing: border-box;

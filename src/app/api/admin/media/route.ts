@@ -18,6 +18,14 @@ function getR2Client() {
   });
 }
 
+function sanitizeName(name: string) {
+  return name.replace(/[^a-zA-Z0-9.-]/g, '_');
+}
+
+function stripExt(name: string) {
+  return name.replace(/\.[^.]+$/, '');
+}
+
 export async function GET() {
   try {
     const media = await db.select().from(mediaFiles).orderBy(desc(mediaFiles.createdAt));
@@ -44,19 +52,31 @@ export async function POST(req: NextRequest) {
 
     let width = 0;
     let height = 0;
+    let originalOutputBuffer = inputBuffer;
     let imageThumbBuffer: Buffer | null = null;
+    let outputContentType = file.type || 'application/octet-stream';
+    let outputExtension = path.extname(file.name) || '.bin';
 
     if (file.type.startsWith('image/')) {
       const metadata = await sharp(inputBuffer).metadata();
       width = metadata.width || 0;
       height = metadata.height || 0;
-      imageThumbBuffer = await sharp(inputBuffer)
-        .resize({ width: 400, withoutEnlargement: true })
-        .webp({ quality: 78 })
-        .toBuffer();
-    }
 
-    const thumbBuffer = imageThumbBuffer ?? inputBuffer;
+      originalOutputBuffer = Buffer.from(await sharp(inputBuffer)
+        .rotate()
+        .resize({ width: 1600, withoutEnlargement: true })
+        .webp({ quality: 84 })
+        .toBuffer());
+
+      imageThumbBuffer = Buffer.from(await sharp(inputBuffer)
+        .rotate()
+        .resize({ width: 420, withoutEnlargement: true })
+        .webp({ quality: 76 })
+        .toBuffer());
+
+      outputContentType = 'image/webp';
+      outputExtension = '.webp';
+    }
 
     const id = typeof crypto !== 'undefined' && crypto.randomUUID
       ? crypto.randomUUID()
@@ -66,6 +86,9 @@ export async function POST(req: NextRequest) {
     let thumbUrl = '';
 
     const hasR2 = process.env.R2_ACCOUNT_ID && process.env.R2_ACCESS_KEY_ID && process.env.R2_SECRET_ACCESS_KEY;
+    const baseName = `${Date.now()}-${sanitizeName(stripExt(file.name))}`;
+    const originalName = `${baseName}${outputExtension}`;
+    const thumbName = file.type.startsWith('image/') ? `thumb-${baseName}.webp` : originalName;
 
     if (hasR2) {
       try {
@@ -74,30 +97,38 @@ export async function POST(req: NextRequest) {
         const r2BaseUrl = process.env.NEXT_PUBLIC_R2_URL || `https://${bucketName}.r2.cloudflarestorage.com`;
         const cleanBaseUrl = r2BaseUrl.endsWith('/') ? r2BaseUrl.slice(0, -1) : r2BaseUrl;
 
-        const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
-        const thumbName = file.type.startsWith('image/')
-          ? `thumb-${safeName.replace(/\.[^.]+$/, '')}.webp`
-          : safeName;
-
         await r2Client.send(new PutObjectCommand({
           Bucket: bucketName,
-          Key: safeName,
-          Body: inputBuffer,
-          ContentType: file.type || 'application/octet-stream',
+          Key: originalName,
+          Body: originalOutputBuffer,
+          ContentType: outputContentType,
         }));
 
-        fileUrl = `${cleanBaseUrl}/${safeName}`;
+        fileUrl = `${cleanBaseUrl}/${originalName}`;
 
         if (file.type.startsWith('image/')) {
+          const slotReadyBuffer = Buffer.from(await sharp(inputBuffer)
+            .rotate()
+            .resize({ width: 1280, height: 720, fit: 'cover', position: 'centre', withoutEnlargement: true })
+            .webp({ quality: 82 })
+            .toBuffer());
+
           await r2Client.send(new PutObjectCommand({
             Bucket: bucketName,
-            Key: thumbName,
-            Body: thumbBuffer,
+            Key: `slot-${baseName}.webp`,
+            Body: slotReadyBuffer,
             ContentType: 'image/webp',
           }));
-          thumbUrl = `${cleanBaseUrl}/${thumbName}`;
-        } else {
-          thumbUrl = fileUrl;
+
+          if (imageThumbBuffer) {
+            await r2Client.send(new PutObjectCommand({
+              Bucket: bucketName,
+              Key: thumbName,
+              Body: imageThumbBuffer,
+              ContentType: 'image/webp',
+            }));
+            thumbUrl = `${cleanBaseUrl}/${thumbName}`;
+          }
         }
       } catch (r2Error) {
         console.error('R2 upload failed, falling back to local storage:', r2Error);
@@ -110,15 +141,13 @@ export async function POST(req: NextRequest) {
         fs.mkdirSync(uploadsDir, { recursive: true });
       }
 
-      const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
-      const localFilePath = path.join(uploadsDir, safeName);
-      fs.writeFileSync(localFilePath, inputBuffer);
-      fileUrl = `/uploads/${safeName}`;
+      const localFilePath = path.join(uploadsDir, originalName);
+      fs.writeFileSync(localFilePath, originalOutputBuffer);
+      fileUrl = `/uploads/${originalName}`;
 
       if (file.type.startsWith('image/')) {
-        const thumbName = `thumb-${safeName.replace(/\.[^.]+$/, '')}.webp`;
         const localThumbPath = path.join(uploadsDir, thumbName);
-        fs.writeFileSync(localThumbPath, thumbBuffer);
+        fs.writeFileSync(localThumbPath, imageThumbBuffer || originalOutputBuffer);
         thumbUrl = `/uploads/${thumbName}`;
       } else {
         thumbUrl = fileUrl;
@@ -133,7 +162,7 @@ export async function POST(req: NextRequest) {
       height,
       alt: alt || file.name,
       size,
-      webpThumbUrl: thumbUrl,
+      webpThumbUrl: thumbUrl || fileUrl,
       createdAt: new Date(),
     });
 
@@ -143,10 +172,10 @@ export async function POST(req: NextRequest) {
         id,
         fileName: file.name,
         url: fileUrl,
-        webpThumbUrl: thumbUrl,
+        webpThumbUrl: thumbUrl || fileUrl,
         width,
         height,
-        alt,
+        alt: alt || file.name,
         size,
       },
     });
