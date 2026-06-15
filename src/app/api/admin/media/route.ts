@@ -1,62 +1,66 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
 import { imageSlots, mediaFiles } from '@/db/schema';
-import { and, desc, eq, or } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
-import { DeleteObjectCommand, S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { DeleteObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+
+function getR2Client() {
+  return new S3Client({
+    region: 'auto',
+    endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    credentials: {
+      accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+      secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+    },
+  });
+}
 
 export async function GET() {
   try {
-    const files = await db
-      .select()
-      .from(mediaFiles)
-      .orderBy(desc(mediaFiles.createdAt));
-    return NextResponse.json({ files });
+    const media = await db.select().from(mediaFiles).orderBy(desc(mediaFiles.createdAt));
+    return NextResponse.json({ success: true, media });
   } catch (error) {
-    console.error('Error listing media:', error);
-    return NextResponse.json({ error: 'Failed to list media' }, { status: 500 });
+    console.error('Error fetching media:', error);
+    return NextResponse.json({ error: 'Failed to fetch media' }, { status: 500 });
   }
 }
 
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const file = formData.get('file') as File;
-    const alt = formData.get('alt') as string || '';
+    const file = formData.get('file') as File | null;
+    const alt = (formData.get('alt') as string | null) || '';
 
     if (!file) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
     const size = file.size;
+    const arrayBuffer = await file.arrayBuffer();
+    const inputBuffer = Buffer.from(arrayBuffer);
 
-    // Read image metadata using sharp
     let width = 0;
     let height = 0;
-    try {
-      const metadata = await sharp(buffer).metadata();
+    let imageThumbBuffer: Buffer | null = null;
+
+    if (file.type.startsWith('image/')) {
+      const metadata = await sharp(inputBuffer).metadata();
       width = metadata.width || 0;
       height = metadata.height || 0;
-    } catch (sharpMetaErr) {
-      console.error('Sharp reading metadata failed, using default 0:', sharpMetaErr);
+      imageThumbBuffer = await sharp(inputBuffer)
+        .resize({ width: 400, withoutEnlargement: true })
+        .webp({ quality: 78 })
+        .toBuffer();
     }
 
-    // Generate WebP 400px thumbnail
-    let thumbBuffer: any = buffer;
-    try {
-      thumbBuffer = await sharp(buffer)
-        .resize({ width: 400 })
-        .toFormat('webp')
-        .toBuffer();
-    } catch (sharpResizeErr) {
-      console.error('Sharp thumbnail resize failed, using original file buffer:', sharpResizeErr);
-    }
-    
-    const thumbFileName = `thumb-${fileName.split('.')[0]}.webp`;
+    const thumbBuffer = imageThumbBuffer ?? inputBuffer;
+
+    const id = typeof crypto !== 'undefined' && crypto.randomUUID
+      ? crypto.randomUUID()
+      : Math.random().toString(36).substring(2) + Date.now().toString(36);
 
     let fileUrl = '';
     let thumbUrl = '';
@@ -65,68 +69,61 @@ export async function POST(req: NextRequest) {
 
     if (hasR2) {
       try {
-        const r2Client = new S3Client({
-          region: 'auto',
-          endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-          credentials: {
-            accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
-            secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
-          },
-        });
-
+        const r2Client = getR2Client();
         const bucketName = process.env.R2_BUCKET_NAME || 'landing-labels';
-
-        // 1. Upload original file
-        await r2Client.send(
-          new PutObjectCommand({
-            Bucket: bucketName,
-            Key: fileName,
-            Body: buffer,
-            ContentType: file.type,
-          })
-        );
-
-        // 2. Upload thumbnail
-        await r2Client.send(
-          new PutObjectCommand({
-            Bucket: bucketName,
-            Key: thumbFileName,
-            Body: thumbBuffer,
-            ContentType: 'image/webp',
-          })
-        );
-
         const r2BaseUrl = process.env.NEXT_PUBLIC_R2_URL || `https://${bucketName}.r2.cloudflarestorage.com`;
         const cleanBaseUrl = r2BaseUrl.endsWith('/') ? r2BaseUrl.slice(0, -1) : r2BaseUrl;
 
-        fileUrl = `${cleanBaseUrl}/${fileName}`;
-        thumbUrl = `${cleanBaseUrl}/${thumbFileName}`;
-        console.log('Successfully uploaded file to Cloudflare R2!');
+        const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+        const thumbName = file.type.startsWith('image/')
+          ? `thumb-${safeName.replace(/\.[^.]+$/, '')}.webp`
+          : safeName;
+
+        await r2Client.send(new PutObjectCommand({
+          Bucket: bucketName,
+          Key: safeName,
+          Body: inputBuffer,
+          ContentType: file.type || 'application/octet-stream',
+        }));
+
+        fileUrl = `${cleanBaseUrl}/${safeName}`;
+
+        if (file.type.startsWith('image/')) {
+          await r2Client.send(new PutObjectCommand({
+            Bucket: bucketName,
+            Key: thumbName,
+            Body: thumbBuffer,
+            ContentType: 'image/webp',
+          }));
+          thumbUrl = `${cleanBaseUrl}/${thumbName}`;
+        } else {
+          thumbUrl = fileUrl;
+        }
       } catch (r2Error) {
-        console.error('R2 upload failed, falling back to local:', r2Error);
-        // Fallback to local will happen below
+        console.error('R2 upload failed, falling back to local storage:', r2Error);
       }
     }
 
-    // Fallback to local file system if R2 is not configured or fails
     if (!fileUrl) {
-      const uploadDir = path.resolve(process.cwd(), 'public/uploads');
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
+      const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
       }
 
-      fs.writeFileSync(path.join(uploadDir, fileName), buffer);
-      fs.writeFileSync(path.join(uploadDir, thumbFileName), thumbBuffer);
+      const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+      const localFilePath = path.join(uploadsDir, safeName);
+      fs.writeFileSync(localFilePath, inputBuffer);
+      fileUrl = `/uploads/${safeName}`;
 
-      fileUrl = `/uploads/${fileName}`;
-      thumbUrl = `/uploads/${thumbFileName}`;
-      console.log('Successfully saved file locally in public/uploads!');
+      if (file.type.startsWith('image/')) {
+        const thumbName = `thumb-${safeName.replace(/\.[^.]+$/, '')}.webp`;
+        const localThumbPath = path.join(uploadsDir, thumbName);
+        fs.writeFileSync(localThumbPath, thumbBuffer);
+        thumbUrl = `/uploads/${thumbName}`;
+      } else {
+        thumbUrl = fileUrl;
+      }
     }
-
-    // Save to DB
-    const id = typeof crypto !== 'undefined' && crypto.randomUUID 
-      ? crypto.randomUUID() 
-      : Math.random().toString(36).substring(2) + Date.now().toString(36);
 
     await db.insert(mediaFiles).values({
       id,
@@ -151,16 +148,20 @@ export async function POST(req: NextRequest) {
         height,
         alt,
         size,
-      }
+      },
     });
   } catch (error) {
     console.error('Error uploading media:', error);
     return NextResponse.json({ error: 'Failed to upload media' }, { status: 500 });
   }
 }
-export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs'; // Node.js required for Sharp!
- (!id) {
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
       return NextResponse.json({ error: 'Missing media id' }, { status: 400 });
     }
 
@@ -225,4 +226,4 @@ export const runtime = 'nodejs'; // Node.js required for Sharp!
 }
 
 export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs'; // Node.js required for Sharp!
+export const runtime = 'nodejs';
