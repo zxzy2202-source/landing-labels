@@ -46,27 +46,27 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
         }
 
         .hero-fixed-v2 {
-          display: block !important; 
           position: relative;
           width: 100%;
           min-height: 100vh;
-          background-color: #1a2a3a; 
-          background-repeat: no-repeat;
-          background-position: center center;
-          background-size: 100% auto; 
-          
           display: flex;
           align-items: center;
-          justify-content: flex-start; 
-          padding: 80px 7%; 
+          justify-content: flex-start;
+          padding: 80px 7%;
           box-sizing: border-box;
           overflow: hidden;
+          background-color: #1a2a3a;
         }
 
-        @media (min-width: 1024px) {
-          .hero-fixed-v2 {
-            background-size: cover;
-          }
+        .hero-media-v2 {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+          z-index: 0;
+          display: block;
         }
 
         .hero-fixed-v2::after {
@@ -74,18 +74,18 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
           position: absolute;
           top: 0; left: 0; width: 100%; height: 100%;
           background: linear-gradient(
-            110deg, 
-            rgba(26, 42, 58, 0.96) 0%, 
-            rgba(26, 42, 58, 0.8) 45%, 
+            110deg,
+            rgba(26, 42, 58, 0.96) 0%,
+            rgba(26, 42, 58, 0.8) 45%,
             rgba(26, 42, 58, 0.5) 100%
           );
           z-index: 1;
         }
-        
+
         .hero-container-v2 {
           position: relative;
           z-index: 10;
-          max-width: 800px; 
+          max-width: 800px;
           text-align: left;
           color: #ffffff !important;
         }
@@ -101,41 +101,42 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
           color: #ffffff !important;
           text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-        .hero-container-v2 h1 span { 
-          color: var(--zx-accent) !important; 
-          text-shadow: 0 0 30px rgba(0, 229, 255, 0.4); 
+        .hero-container-v2 h1 span {
+          color: var(--zx-accent) !important;
+          text-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
         }
 
-          .hero-container-v2 p {
-            font-size: clamp(16px, 1.6vw, 19px);
-            line-height: 1.8;
-            margin-bottom: 32px;
-            color: #ffffff !important;
-            font-weight: 500;
-          }
+        .hero-container-v2 p {
+          font-size: clamp(16px, 1.6vw, 19px);
+          line-height: 1.8;
+          margin-bottom: 32px;
+          color: #ffffff !important;
+          font-weight: 500;
+        }
 
         .hero-container-v2 p b { color: #ffffff !important; border-bottom: 2px solid var(--zx-primary); }
 
-          .tech-pills-wrap-v2 {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 15px;
-            margin-bottom: 50px;
-          }
-
+        .tech-pills-wrap-v2 {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 15px;
+          margin-bottom: 40px;
+        }
 
         .pill-item-v2 {
-          background: rgba(255,255,255,0.15);
-          border: 1px solid rgba(255,255,255,0.25);
-          padding: 10px 22px;
+          background: rgba(255,255,255,0.12);
+          border: 1px solid rgba(255,255,255,0.2);
+          padding: 10px 18px;
           border-radius: 4px;
-          font-size: 13px;
+          font-size: 12px;
           font-weight: 700;
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 10px;
-          backdrop-filter: blur(5px);
           color: #ffffff !important;
+          min-width: 0;
+          white-space: nowrap;
         }
         .pill-item-v2 i { color: var(--zx-accent) !important; font-style: normal; font-weight: 900; }
 
@@ -147,29 +148,26 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
           text-transform: uppercase;
           border-radius: 4px;
           text-decoration: none;
-          transition: 0.4s;
+          transition: 0.25s ease;
           min-width: 220px;
           text-align: center;
         }
 
         .btn-action-v2:focus { outline: 3px solid var(--zx-accent); outline-offset: 4px; }
 
-        .btn-solid-v2 { 
-          background: var(--zx-primary) !important; 
-          color: #fff !important; 
-          box-shadow: 0 10px 25px rgba(0, 155, 164, 0.3); 
+        .btn-solid-v2 {
+          background: var(--zx-primary) !important;
+          color: #fff !important;
+          box-shadow: 0 10px 25px rgba(0, 155, 164, 0.22);
         }
         .btn-outline-v2 { border: 2px solid #fff !important; color: #fff !important; }
         .btn-outline-v2:hover { background: #fff !important; color: var(--zx-dark) !important; }
 
         @media (max-width: 768px) {
-          .hero-fixed-v2 { 
-            justify-content: center; 
-            padding: 100px 20px 60px; 
-            min-height: auto; 
-            min-height: 100svh; 
-            background-size: cover; 
-            background-position: center center;
+          .hero-fixed-v2 {
+            justify-content: center;
+            padding: 100px 20px 60px;
+            min-height: 100svh;
           }
           .hero-container-v2 { text-align: center; }
           .tech-pills-wrap-v2 { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: center; }
@@ -179,15 +177,22 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
         }
       ` }} />
 
-      <section 
-        className="hero-fixed-v2" 
-        role="banner" 
+      <section
+        className="hero-fixed-v2"
+        role="banner"
         aria-label="Zhixin Paper Hero Banner"
-        style={{ backgroundImage: `url('${bgUrl}')` }}
       >
+        <img
+          src={bgUrl}
+          alt="Zhixin Paper product and factory showcase"
+          className="hero-media-v2"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+        />
         <div className="hero-container-v2">
           {renderTitle(title, highlight)}
-          
+
           <p dangerouslySetInnerHTML={{ __html: description.replace(/since 2009/g, '<b>since 2009</b>').replace(/high-tensile glassine liners/g, '<b>high-tensile glassine liners</b>').replace(/zero-downtime automatic labeling/g, '<b>zero-downtime automatic labeling</b>').replace(/80\+ countries/g, '<b>80+ countries</b>') }} />
 
           <div className="tech-pills-wrap-v2" role="list" aria-label="Our factory features">

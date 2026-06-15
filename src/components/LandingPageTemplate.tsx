@@ -49,17 +49,26 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
       <Header resolvedUrls={resolvedUrls} />
       <main id="main-content" role="main">
         <Hero heroConfig={heroConfig} resolvedUrls={resolvedUrls} />
-        <Vanguard resolvedUrls={resolvedUrls} />
-        <FluidHub resolvedUrls={resolvedUrls} />
-        <ProductCenter products={products} resolvedUrls={resolvedUrls} />
-        <Heritage />
-        <FAQ />
-        <Certifications resolvedUrls={resolvedUrls} />
-        <LogisticsShowcase resolvedUrls={resolvedUrls} />
-        <Services />
-        <ContactForm />
+        <Suspense fallback={null}>
+          <Vanguard resolvedUrls={resolvedUrls} />
+          <FluidHub resolvedUrls={resolvedUrls} />
+          <ProductCenter products={products} resolvedUrls={resolvedUrls} />
+          <Heritage />
+          <FAQ />
+          <Certifications resolvedUrls={resolvedUrls} />
+          <LogisticsShowcase resolvedUrls={resolvedUrls} />
+          <Services />
+          <ContactForm />
+        </Suspense>
       </main>
       <Footer resolvedUrls={resolvedUrls} />
+      <WhatsAppWidget />
+    </div>
+  );
+};
+
+export default LandingPageTemplate;
+dUrls} />
       <WhatsAppWidget />
     </div>
   );
