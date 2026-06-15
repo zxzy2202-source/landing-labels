@@ -155,7 +155,7 @@ export default function AdminDashboardPage() {
       setInquiries(inqData);
       setSettings(setData);
       setSettingsForm(setData);
-      setMediaList(medData.files || []);
+      setMediaList(medData.media || []);
       setSlots(slotData.slots || []);
       setProductOverrides(prodData.overrides || []);
 
