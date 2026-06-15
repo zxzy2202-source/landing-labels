@@ -669,9 +669,9 @@ export default function AdminDashboardPage() {
         {/* Brand Header */}
         <div className="p-5 bg-black/10 border-b border-white/5 flex items-center gap-3">
           <img
-            src="https://gozhumeng.com/wp-content/uploads/Zhixin-Paper-logo-Professional-thermal-label-and-adhesive-label-manufacturer.png"
+            src="/vercel.svg"
             alt="知信纸业"
-            className="h-8 w-auto bg-white p-1 rounded-sm"
+            className="h-12 w-auto object-contain"
           />
           <div>
             <h2 className="text-xs font-extrabold tracking-wider text-white uppercase">知信后台</h2>
