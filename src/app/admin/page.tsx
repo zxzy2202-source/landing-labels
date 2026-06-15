@@ -1779,15 +1779,6 @@ export default function AdminDashboardPage() {
                               大类 {DEFAULT_PRODUCTS[editingProduct.categoryIndex].category} 矩阵子项
                             </p>
                                   </div>
-                                  {canDelete && (
-                                    <button
-                                      onClick={() => handleDeleteMedia(media.id, media.fileName)}
-                                      className="mt-2 w-full flex items-center justify-center gap-1.5 py-1.5 bg-red-50 hover:bg-red-600 hover:text-white text-[10px] font-bold rounded text-red-600 transition-colors uppercase tracking-wider border border-red-200"
-                                    >
-                                      <Trash2 className="w-3.5 h-3.5" />
-                                      删除图片
-                                    </button>
-                                  )}
                         </div>
 
                         <form onSubmit={handleProductFormSave} className="flex-1 overflow-y-auto p-5 space-y-4">
