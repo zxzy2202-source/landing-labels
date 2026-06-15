@@ -5,7 +5,7 @@ import { DEFAULT_SLOTS } from '@/lib/imageSlotsData';
 import { HeroConfig } from '@/lib/siteSettingsTypes';
 
 interface HeroProps {
-  heroConfig?: HeroConfig;
+  heroConfig?: Partial<HeroConfig>;
   resolvedUrls?: Record<string, string>;
 }
 

@@ -23,12 +23,16 @@ export default async function USPage() {
   const slotKeys = Object.keys(DEFAULT_SLOTS);
   const resolvedUrls = await getSlottedImages(slotKeys);
 
+  const heroConfig = {
+    ...settings.hero,
+    ...settings.geo.us?.hero,
+  };
+
   return (
     <LandingPageTemplate 
-      settings={settings}
+      heroConfig={heroConfig}
       products={products}
       resolvedUrls={resolvedUrls}
-      geoCode="us"
     />
   );
 }

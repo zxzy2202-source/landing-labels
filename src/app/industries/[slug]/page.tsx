@@ -30,10 +30,9 @@ export default async function IndustryPage({ params }: PageProps) {
 
   return (
     <LandingPageTemplate 
-      settings={settings}
+      heroConfig={settings.hero}
       products={products}
       resolvedUrls={resolvedUrls}
-      industrySlug={slug}
     />
   );
 }
