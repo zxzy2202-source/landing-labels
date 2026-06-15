@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export const WhatsAppWidget: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);

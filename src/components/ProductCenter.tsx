@@ -406,7 +406,7 @@ export const ProductCenter: React.FC<ProductCenterProps> = ({ products, resolved
           {data && (
             <>
               <button type="button" className="main-feat-card" onClick={goToContact} aria-label={`Inquire about ${data.category}`}>
-                <img src={catMainImg} alt={data.category} width="800" height="450" loading="eager" decoding="async" />
+                <img src={catMainImg} alt={data.category} width="800" height="450" loading="lazy" decoding="async" />
               </button>
               {data.items.map((item) => (
                 <button

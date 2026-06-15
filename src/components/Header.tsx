@@ -259,8 +259,18 @@ export const Header: React.FC<HeaderProps> = ({ resolvedUrls }) => {
         }
 
         @media (max-width: 768px) {
+          html {
+            scroll-behavior: auto;
+          }
+
           .zx-top-scroller {
             height: 28px;
+          }
+
+          .zx-marquee-content {
+            animation: none;
+            transform: none;
+            justify-content: flex-start;
           }
           .zx-tag {
             font-size: 9px;

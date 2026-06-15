@@ -106,13 +106,14 @@ export const Hero: React.FC<HeroProps> = ({ heroConfig, resolvedUrls }) => {
           text-shadow: 0 0 30px rgba(0, 229, 255, 0.4); 
         }
 
-        .hero-container-v2 p {
-          font-size: clamp(16px, 1.6vw, 19px);
-          line-height: 1.8;
-          margin-bottom: 45px;
-          color: #ffffff !important;
-          font-weight: 500;
-        }
+          .hero-container-v2 p {
+            font-size: clamp(16px, 1.6vw, 19px);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            color: #ffffff !important;
+            font-weight: 500;
+          }
+
         .hero-container-v2 p b { color: #ffffff !important; border-bottom: 2px solid var(--zx-primary); }
 
           .tech-pills-wrap-v2 {
