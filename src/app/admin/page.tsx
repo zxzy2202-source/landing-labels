@@ -23,7 +23,8 @@ import {
   Loader2,
   FileText,
   Search,
-  Eye
+  Eye,
+  Trash2
 } from 'lucide-react';
 import { SiteSettingsData } from '@/lib/siteSettingsTypes';
 import { DEFAULT_PRODUCTS, ProductCategory } from '@/lib/productsData';

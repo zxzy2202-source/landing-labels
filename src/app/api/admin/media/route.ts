@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
-import { mediaFiles } from '@/db/schema';
-import { desc } from 'drizzle-orm';
+import { imageSlots, mediaFiles } from '@/db/schema';
+import { and, desc, eq, or } from 'drizzle-orm';
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { DeleteObjectCommand, S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 export async function GET() {
   try {
@@ -158,5 +158,71 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Failed to upload media' }, { status: 500 });
   }
 }
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs'; // Node.js required for Sharp!
+ (!id) {
+      return NextResponse.json({ error: 'Missing media id' }, { status: 400 });
+    }
+
+    const media = await db.select().from(mediaFiles).where(eq(mediaFiles.id, id)).limit(1);
+    const target = media[0];
+
+    if (!target) {
+      return NextResponse.json({ error: 'Media not found' }, { status: 404 });
+    }
+
+    await db
+      .update(imageSlots)
+      .set({ mediaFileId: null, updatedAt: new Date() })
+      .where(eq(imageSlots.mediaFileId, id));
+
+    const hasR2 = process.env.R2_ACCOUNT_ID && process.env.R2_ACCESS_KEY_ID && process.env.R2_SECRET_ACCESS_KEY;
+    if (hasR2) {
+      try {
+        const bucketName = process.env.R2_BUCKET_NAME || 'landing-labels';
+        const r2BaseUrl = process.env.NEXT_PUBLIC_R2_URL || `https://${bucketName}.r2.cloudflarestorage.com`;
+        const cleanBaseUrl = r2BaseUrl.endsWith('/') ? r2BaseUrl.slice(0, -1) : r2BaseUrl;
+        const r2Client = getR2Client();
+
+        const keysToDelete = [target.url, target.webpThumbUrl]
+          .filter(Boolean)
+          .map((url) => url.replace(`${cleanBaseUrl}/`, ''));
+
+        for (const key of keysToDelete) {
+          await r2Client.send(
+            new DeleteObjectCommand({
+              Bucket: bucketName,
+              Key: key,
+            })
+          );
+        }
+      } catch (r2DeleteError) {
+        console.error('Failed to delete media from R2:', r2DeleteError);
+      }
+    }
+
+    const localPaths = [target.url, target.webpThumbUrl]
+      .filter((url) => typeof url === 'string' && url.startsWith('/uploads/'))
+      .map((url) => path.resolve(process.cwd(), 'public', url.replace(/^\//, '')));
+
+    for (const filePath of localPaths) {
+      try {
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+      } catch (localDeleteError) {
+        console.error('Failed to delete local media file:', localDeleteError);
+      }
+    }
+
+    await db.delete(mediaFiles).where(eq(mediaFiles.id, id));
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting media:', error);
+    return NextResponse.json({ error: 'Failed to delete media' }, { status: 500 });
+  }
+}
+
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs'; // Node.js required for Sharp!
