@@ -13,7 +13,7 @@ export async function GET() {
       .select()
       .from(mediaFiles)
       .orderBy(desc(mediaFiles.createdAt));
-    return NextResponse.json({ files });
+    return NextResponse.json({ success: true, files, media: files });
   } catch (error) {
     console.error('Error listing media:', error);
     return NextResponse.json({ error: 'Failed to list media' }, { status: 500 });
