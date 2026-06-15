@@ -37,7 +37,15 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
   products,
   resolvedUrls,
 }) => {
-  const effectiveHero = heroConfig || settings?.hero;
+  const effectiveHero = {
+    title: heroConfig?.title || settings?.hero?.title || 'Zhixin Paper: Custom Roll Label Manufacturer & Global Supply Partner',
+    highlightText: heroConfig?.highlightText || settings?.hero?.highlightText || 'Custom Roll Label',
+    description: heroConfig?.description || settings?.hero?.description || 'Direct factory supplier since 2009. We engineer high-tensile glassine liners for zero-downtime automatic labeling and premium gold foil finishes for luxury brands. Serving partners in 80+ countries with 100% confidential support.',
+    btnPrimaryText: heroConfig?.btnPrimaryText || settings?.hero?.btnPrimaryText || 'Request Free Samples',
+    btnPrimaryLink: heroConfig?.btnPrimaryLink || settings?.hero?.btnPrimaryLink || '#contact',
+    btnSecondaryText: heroConfig?.btnSecondaryText || settings?.hero?.btnSecondaryText || 'Explore Products',
+    btnSecondaryLink: heroConfig?.btnSecondaryLink || settings?.hero?.btnSecondaryLink || '#products',
+  };
 
   return (
     <div id="home">
@@ -61,3 +69,4 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
 };
 
 export default LandingPageTemplate;
+

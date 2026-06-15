@@ -23,14 +23,9 @@ export default async function EUPage() {
   const slotKeys = Object.keys(DEFAULT_SLOTS);
   const resolvedUrls = await getSlottedImages(slotKeys);
 
-  const heroConfig = {
-    ...settings.hero,
-    ...settings.geo.eu?.hero,
-  };
-
   return (
     <LandingPageTemplate 
-      heroConfig={heroConfig}
+      settings={settings}
       products={products}
       resolvedUrls={resolvedUrls}
     />
