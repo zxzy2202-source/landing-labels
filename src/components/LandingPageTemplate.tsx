@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from './Header';
 import Hero from './Hero';
 import Vanguard from './Vanguard';
@@ -49,17 +49,15 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
       <Header resolvedUrls={resolvedUrls} />
       <main id="main-content" role="main">
         <Hero heroConfig={heroConfig} resolvedUrls={resolvedUrls} />
-        <Suspense fallback={null}>
-          <Vanguard resolvedUrls={resolvedUrls} />
-          <FluidHub resolvedUrls={resolvedUrls} />
-          <ProductCenter products={products} resolvedUrls={resolvedUrls} />
-          <Heritage />
-          <FAQ />
-          <Certifications resolvedUrls={resolvedUrls} />
-          <LogisticsShowcase resolvedUrls={resolvedUrls} />
-          <Services />
-          <ContactForm />
-        </Suspense>
+        <Vanguard resolvedUrls={resolvedUrls} />
+        <FluidHub resolvedUrls={resolvedUrls} />
+        <ProductCenter products={products} resolvedUrls={resolvedUrls} />
+        <Heritage />
+        <FAQ />
+        <Certifications resolvedUrls={resolvedUrls} />
+        <LogisticsShowcase resolvedUrls={resolvedUrls} />
+        <Services />
+        <ContactForm />
       </main>
       <Footer resolvedUrls={resolvedUrls} />
       <WhatsAppWidget />
@@ -68,8 +66,7 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({
 };
 
 export default LandingPageTemplate;
-dUrls} />
-      <WhatsAppWidget />
+/>
     </div>
   );
 };
