@@ -172,6 +172,11 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'Media not found' }, { status: 404 });
     }
 
+    const isVideo = /\.(mp4|mov|m4v|webm|ogg)$/i.test(target.fileName) || target.url.includes('/video/') || target.url.endsWith('.mp4');
+    if (isVideo) {
+      return NextResponse.json({ error: 'Video deletion is not enabled here' }, { status: 400 });
+    }
+
     await db
       .update(imageSlots)
       .set({ mediaFileId: null, updatedAt: new Date() })
