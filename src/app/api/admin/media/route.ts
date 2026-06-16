@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
           })
         );
 
-        const r2BaseUrl = process.env.NEXT_PUBLIC_R2_URL || `https://${bucketName}.r2.cloudflarestorage.com`;
+        const r2BaseUrl = process.env.NEXT_PUBLIC_R2_URL || `https://img.gozhumeng.com/${bucketName}`;
         const cleanBaseUrl = r2BaseUrl.endsWith('/') ? r2BaseUrl.slice(0, -1) : r2BaseUrl;
 
         fileUrl = `${cleanBaseUrl}/${fileName}`;

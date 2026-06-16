@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
 
     const safeFileName = `${Date.now()}-${fileName.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
     const bucketName = process.env.R2_BUCKET_NAME || 'landing-labels';
-    const r2BaseUrl = process.env.NEXT_PUBLIC_R2_URL || `https://${bucketName}.r2.cloudflarestorage.com`;
+    const r2BaseUrl = process.env.NEXT_PUBLIC_R2_URL || `https://img.gozhumeng.com/${bucketName}`;
     const cleanBaseUrl = r2BaseUrl.endsWith('/') ? r2BaseUrl.slice(0, -1) : r2BaseUrl;
 
     const command = new PutObjectCommand({
