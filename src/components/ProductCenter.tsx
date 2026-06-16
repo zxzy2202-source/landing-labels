@@ -402,7 +402,7 @@ export const ProductCenter: React.FC<ProductCenterProps> = ({ products, resolved
           ))}
         </div>
         
-        <div className="grid-gallery" id="galleryGrid" role="list">
+        <div className="grid-gallery" id="galleryGrid">
           {data && (
             <>
               <button type="button" className="main-feat-card" onClick={goToContact} aria-label={`Inquire about ${data.category}`}>
