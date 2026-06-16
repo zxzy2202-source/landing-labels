@@ -16,7 +16,7 @@ export const DEFAULT_PRODUCTS: ProductCategory[] = [
   {
     category: "Food & Beverage Jars",
     tagline: "High-Stability Solutions for FDA Compliance",
-    mainImg: "https://gozhumeng.com/wp-content/uploads/zhixin-paper-food-beverage-honey-coffee-jar-labels.webp",
+    mainImg: "https://img.gozhumeng.com/1781514521495-zhixin-paper-food-beverage-honey-coffee-jar-labels.webp",
     items: [
       { title: "Honey Jar Labels", desc: "Food-safe adhesives for honey jars.", longDesc: `Craft
 Multi-color flexographic printing on coated paper or BOPP film with precision rotary die-cutting (+/-0.15mm). Optional hot foil stamping in gold or silver with gloss/matte varnish overcoat.
@@ -28,7 +28,7 @@ Specifications
 - Material: Coated art paper (80gsm) or white BOPP film (50 micron)
 - Adhesive: Permanent acrylic, food-grade
 - Temperature: -5 C to +60 C
-- Certifications: FDA, ISO 9001, FSC`, img: "https://gozhumeng.com/wp-content/uploads/honey-jar-labels-custom-gold-foil.webp" },
+- Certifications: FDA, ISO 9001, FSC`, img: "https://img.gozhumeng.com/1781514351209-honey-jar-labels-custom-gold-foil.webp" },
       { title: "Jam & Sauce Labels", desc: "Moisture-resistant for refrigeration.", longDesc: `Craft
 8-color UV flexo printing with water-resistant thermal laminate on coated paper or PP film. Sealed barrier prevents ink bleed and peeling during refrigeration.
 
@@ -39,7 +39,7 @@ Specifications
 - Material: Coated paper + waterproof laminate, or white PP film
 - Adhesive: Freezer-grade acrylic (-20 C to +80 C)
 - Printing: UV flexography, up to 8 colors
-- Certifications: FDA, BPA-free, FSC`, img: "https://gozhumeng.com/wp-content/uploads/waterproof-jam-sauce-jar-stickers.webp" },
+- Certifications: FDA, BPA-free, FSC`, img: "https://img.gozhumeng.com/1781514471480-waterproof-jam-sauce-jar-stickers.webp" },
       { title: "Wine Labels", desc: "Textured papers for ice buckets.", longDesc: `Craft
 Premium uncoated textured papers (estate laid, cotton felt, linen-weave) with letterpress or embossing. Gold/silver/copper foil hot stamping with moisture-barrier topcoat.
 
@@ -50,7 +50,7 @@ Specifications
 - Material: Estate laid / cotton felt / linen-weave (90-120gsm)
 - Adhesive: Permanent acrylic, ice-water resistant
 - Techniques: Foil stamping, embossing, letterpress
-- Certifications: FSC, ISO 9001`, img: "https://gozhumeng.com/wp-content/uploads/premium-wine-beverage-bottle-labels.webp" },
+- Certifications: FSC, ISO 9001`, img: "https://img.gozhumeng.com/1781514395053-premium-wine-beverage-bottle-labels.webp" },
       { title: "Canning Labels", desc: "Food-grade security for pickles.", longDesc: `Craft
 Coated paper or synthetic substrate with heat-resistant laminate. Precision rotary die-cut (0.1mm tolerance). Cross-linked adhesive system for hot-fill and pasteurization processes.
 
@@ -61,7 +61,7 @@ Specifications
 - Material: Coated paper (80gsm) or white BOPP (50 micron)
 - Adhesive: Heat-resistant cross-linked acrylic
 - Temperature: -10 C to +90 C (hot-fill rated)
-- Certifications: FDA 21 CFR 175.105, FSC`, img: "https://gozhumeng.com/wp-content/uploads/canning-pickle-jar-labels-food-grade.webp" },
+- Certifications: FDA 21 CFR 175.105, FSC`, img: "https://img.gozhumeng.com/1781514294501-canning-pickle-jar-labels-food-grade.webp" },
       { title: "Mason Jar Stickers", desc: "Artisanal stickers for storage.", longDesc: `Craft
 Premium matte or kraft paper with soy-based inks. Custom die-cut shapes (circles, ovals, hexagons) via laser or rotary tooling. Writable matte topcoat for hand-labeling. Kiss-cut on rolls or sheets.
 
@@ -72,13 +72,13 @@ Specifications
 - Material: Matte art paper, kraft paper, or writable stock
 - Adhesive: Removable or permanent acrylic
 - Shapes: Custom die-cut (circle, oval, hex, arch)
-- Certifications: FDA, FSC, soy-ink printed`, img: "https://gozhumeng.com/wp-content/uploads/mason-jar-labels-food-grade-stickers.webp" }
+- Certifications: FDA, FSC, soy-ink printed`, img: "https://img.gozhumeng.com/1781514368796-mason-jar-labels-food-grade-stickers.webp" }
     ]
   },
   {
     category: "Personal Care & Health",
     tagline: "Aesthetic Integrity meets Durability",
-    mainImg: "https://gozhumeng.com/wp-content/uploads/zhixin-paper-cosmetic-personal-care-labels-alcohol-wipes.webp",
+    mainImg: "https://img.gozhumeng.com/1781514501979-zhixin-paper-cosmetic-personal-care-labels-alcohol-wipes.webp",
     items: [
       { title: "Skin Care Labels", desc: "Luxury soft-touch finishes.", longDesc: `Craft
 UV flexographic or digital HP Indigo on matte art paper, pearlescent film, or white BOPP. Soft-touch velvet laminate creates a suede-like texture. Optional hot foil, raised spot UV, and sculptured embossing.
@@ -90,7 +90,7 @@ Specifications
 - Material: Matte art paper / pearlescent BOPP / white PP (50-80 micron)
 - Adhesive: Permanent acrylic, cosmetic-grade
 - Finish: Soft-touch velvet laminate, optional foil/spot UV
-- Certifications: REACH, RoHS`, img: "https://gozhumeng.com/wp-content/uploads/luxury-skin-care-cream-jar-labels.webp" },
+- Certifications: REACH, RoHS`, img: "https://img.gozhumeng.com/1781514362171-luxury-skin-care-cream-jar-labels.webp" },
       { title: "Essential Oil Tags", desc: "100% oil-proof synthetic material.", longDesc: `Craft
 Oil-proof white PP/PET composite film with UV-curable inks. Specially formulated oil-tolerant acrylic adhesive maintains bond after direct contact with undiluted essential oils.
 
@@ -101,7 +101,7 @@ Specifications
 - Material: Oil-proof white PP/PET composite film (50 micron)
 - Adhesive: Oil-tolerant permanent acrylic
 - Oil Resistance: 168+ hours direct contact, no degradation
-- Certifications: REACH, RoHS, BPA-free`, img: "https://gozhumeng.com/wp-content/uploads/oil-proof-essential-oil-bottle-labels.webp" },
+- Certifications: REACH, RoHS, BPA-free`, img: "https://img.gozhumeng.com/1781514373633-oil-proof-essential-oil-bottle-labels.webp" },
       { title: "Shampoo Labels", desc: "Flexible PE for squeeze bottles.", longDesc: `Craft
 Reverse-printed conformable PE film by UV flexography. Ink layer sandwiched between film and adhesive for 100% waterproofing. PE engineered for high elasticity with stretch and recovery.
 
@@ -112,7 +112,7 @@ Specifications
 - Material: Conformable white/clear PE film (80-100 micron)
 - Adhesive: Waterproof permanent acrylic
 - Elasticity: Up to 200% stretch and recovery
-- Certifications: REACH, RoHS, BPA-free`, img: "https://gozhumeng.com/wp-content/uploads/shampoo-body-wash-bottle-labels.webp" },
+- Certifications: REACH, RoHS, BPA-free`, img: "https://img.gozhumeng.com/1781514434890-shampoo-body-wash-bottle-labels.webp" },
       { title: "Perfume Labels", desc: "Invisible no-label look on glass.", longDesc: `Craft
 Ultra-transparent PET film with crystal-clear adhesive eliminating haze on glass. Reverse-print UV flexography with flood white backing creates floating graphics with no visible label edge.
 
@@ -123,7 +123,7 @@ Specifications
 - Material: Ultra-clear PET film (36-50 micron)
 - Adhesive: Crystal-clear permanent acrylic (90%+ light transmission)
 - Printing: Reverse-print + flood white, up to 8 colors
-- Certifications: REACH, RoHS`, img: "https://gozhumeng.com/wp-content/uploads/perfume-bottle-labels-premium-finish.webp" },
+- Certifications: REACH, RoHS`, img: "https://img.gozhumeng.com/1781514381685-perfume-bottle-labels-premium-finish.webp" },
       { title: "Lip Balm Stickers", desc: "Micro-die-cut for tiny tubes.", longDesc: `Craft
 High-precision rotary die-cutting with +/-0.1mm tolerance for labels as small as 15mm x 40mm. Flexible white BOPP with soft-touch or gloss laminate. Kiss-cut for easy peeling.
 
@@ -135,13 +135,13 @@ Specifications
 - Adhesive: Permanent acrylic, clean-removable option
 - Cutting Tolerance: +/-0.1mm, kiss-cut
 - Minimal Size: 15mm x 40mm
-- Certifications: FDA, REACH, BPA-free`, img: "https://gozhumeng.com/wp-content/uploads/cosmetic-jar-labels-lip-balm-stickers.webp" }
+- Certifications: FDA, REACH, BPA-free`, img: "https://img.gozhumeng.com/1781514313109-cosmetic-jar-labels-lip-balm-stickers.webp" }
     ]
   },
   {
     category: "Industrial & Logistics",
     tagline: "High-Speed Efficiency Rolls",
-    mainImg: "https://gozhumeng.com/wp-content/uploads/zhixin-paper-industrial-logistics-colored-thermal-roll-labels.webp",
+    mainImg: "https://img.gozhumeng.com/1781514534172-zhixin-paper-industrial-logistics-colored-thermal-roll-labels.webp",
     items: [
       { title: "Shipping Labels", desc: "Direct thermal for 100% scan rates.", longDesc: `Craft
 High-sensitivity direct thermal paper with chemical coating that darkens precisely under heat - no ink or ribbon needed. Cleanroom slot-die coating for uniform response. Precision slit with controlled tension winding.
@@ -154,7 +154,7 @@ Specifications
 - Image Durability: 5+ years dark storage, 1+ year indoor
 - Core Size: 25mm, 40mm, 76mm (1in, 1.5in, 3in)
 - Roll OD: Up to 250mm (10in)
-- Certifications: BPA-free, RoHS`, img: "https://gozhumeng.com/wp-content/uploads/direct-thermal-shipping-labels-rolls.webp" },
+- Certifications: BPA-free, RoHS`, img: "https://img.gozhumeng.com/1781514328625-direct-thermal-shipping-labels-rolls.webp" },
       { title: "Barcode Stickers", desc: "High-contrast for inventory tracking.", longDesc: `Craft
 Semi-gloss or matte coated paper with resin-enhanced thermal transfer ribbon. 80+ brightness white point for razor-sharp barcode edges. Also available as direct thermal.
 
@@ -166,7 +166,7 @@ Specifications
 - Printing: Thermal transfer (resin ribbon) or direct thermal
 - Contrast: Over 90% ANSI barcode contrast signal (BCS)
 - Adhesive: Permanent acrylic or rubber-based
-- Certifications: RoHS, BPA-free (thermal options)`, img: "https://gozhumeng.com/wp-content/uploads/barcode-inventory-roll-stickers-scaled.webp" },
+- Certifications: RoHS, BPA-free (thermal options)`, img: "https://img.gozhumeng.com/1781514288218-barcode-inventory-roll-stickers.jpg" },
       { title: "Thank You Rolls", desc: "Branded stickers for e-commerce.", longDesc: `Craft
 Full-color UV flexo on gloss art paper or white BOPP (up to 8 colors). Custom die-cut shapes (circles, hearts, logo contours). Gloss or matte over-laminate. Wound on 76mm (3in) cores.
 
@@ -178,7 +178,7 @@ Specifications
 - Adhesive: Permanent acrylic
 - Shapes: Custom die-cut (circle, heart, logo contour)
 - Roll Core: 76mm (3in), up to 250mm OD
-- Certifications: FSC (paper), BPA-free`, img: "https://gozhumeng.com/wp-content/uploads/wholesale-thank-you-labels-bulk-rolls.webp" },
+- Certifications: FSC (paper), BPA-free`, img: "https://img.gozhumeng.com/1781514484663-wholesale-thank-you-labels-bulk-rolls.webp" },
       { title: "Security Seals", desc: "Tamper-evident box security.", longDesc: `Craft
 Multi-layer voiding film with custom security pattern printing. Frangible VOID layer permanently activates on attempted removal - leaves visible tamper evidence on both label and substrate. Optional UV-fluorescent fibers.
 
@@ -190,7 +190,7 @@ Specifications
 - Tamper Evidence: Permanent VOID pattern on both surfaces
 - Customization: Serial numbers, barcodes, QR codes, holographic
 - Adhesive: Ultra-high-tack permanent, destroys on removal
-- Certifications: ISO 9001, RoHS`, img: "https://gozhumeng.com/wp-content/uploads/tamper-evident-seal-labels-packaging.webp" },
+- Certifications: ISO 9001, RoHS`, img: "https://img.gozhumeng.com/1781514453940-tamper-evident-seal-labels-packaging.webp" },
       { title: "Thermal Labels", desc: "Fast-print rolls for barcode and shipping systems.", longDesc: `Craft
 High-sensitivity direct thermal face stock engineered for stable, ribbon-free printing. Clean slit edges and balanced winding tension help maintain smooth dispensing on automatic labeling and logistics printing lines. Optional top-coated construction improves resistance to scratching, smudging, and light moisture exposure.
 
@@ -204,13 +204,13 @@ Specifications
 - Core Size: 25mm / 40mm / 76mm
 - Roll OD: Customized for desktop and industrial printers
 - Use Cases: Shipping, warehousing, inventory, barcode, express logistics
-- Certifications: BPA-free options, RoHS, ISO 9001`, img: "/uploads/direct-thermal-labels-high-speed-logistics-rolls.webp" }
+- Certifications: BPA-free options, RoHS, ISO 9001`, img: "https://img.gozhumeng.com/1781593137523-direct-thermal-labels-high-speed-logistics-rolls.webp" }
     ]
   },
   {
     category: "Safety & Eco-Certified",
     tagline: "Compliance First Sustainability",
-    mainImg: "/uploads/zhixin-paper-eco-friendly-bpa-free-fsc-certified-labels.webp",
+    mainImg: "https://img.gozhumeng.com/1781514507808-zhixin-paper-eco-friendly-bpa-free-fsc-certified-labels.webp",
     items: [
       { title: "Freezer Labels", desc: "Bond instantly to frozen plastic.", longDesc: `Craft
 Cryogenic-grade white BOPP or polyester film with sub-zero acrylic adhesive system. Low-Tg polymer formulation stays flexible where standard adhesives crystallize. Moisture-barrier overcoat prevents ice crystal damage.
@@ -222,7 +222,7 @@ Specifications
 - Material: White BOPP or polyester film (50-80 micron)
 - Adhesive: Cryogenic acrylic, bonds at -20 C to -40 C
 - Service Temperature: -40 C to +80 C
-- Certifications: FDA (indirect food contact), BPA-free`, img: "https://gozhumeng.com/wp-content/uploads/freezer-labels-cold-storage-minus-20.webp" },
+- Certifications: FDA (indirect food contact), BPA-free`, img: "https://img.gozhumeng.com/1781514333688-freezer-labels-cold-storage-minus-20.webp" },
       { title: "Industrial Vinyl", desc: "Heavy-duty equipment shields.", longDesc: `Craft
 Cast or calendered PVC vinyl (80-120 micron) with UV-curable or solvent-based inks. UV-absorbing clear laminate provides 3-7 years outdoor weatherability. Custom die-cut shapes up to 600mm wide.
 
@@ -234,7 +234,7 @@ Specifications
 - Adhesive: High-tack permanent acrylic
 - Outdoor Life: 3-7 years UV resistance
 - Temperature: -30 C to +100 C
-- Certifications: RoHS, UL recognized (optional)`, img: "https://gozhumeng.com/wp-content/uploads/waterproof-oil-proof-industrial-labels.webp" },
+- Certifications: RoHS, UL recognized (optional)`, img: "https://img.gozhumeng.com/1781514477385-waterproof-oil-proof-industrial-labels.webp" },
       { title: "High-Temp Labels", desc: "Heat stable for PCB tracking.", longDesc: `Craft
 Polyimide (Kapton) film with high-temp acrylic or silicone adhesive. Thermal transfer with specialized resin ribbon curing at elevated temperatures. Anti-static treatment prevents ESD damage.
 
@@ -246,7 +246,7 @@ Specifications
 - Adhesive: Silicone or high-temp acrylic
 - Temperature: -40 C to +260 C continuous, +300 C peak
 - ESD: Anti-static treated (optional)
-- Certifications: UL recognized, RoHS, halogen-free`, img: "https://gozhumeng.com/wp-content/uploads/high-temperature-resistant-labels.webp" },
+- Certifications: UL recognized, RoHS, halogen-free`, img: "https://img.gozhumeng.com/1781514346320-high-temperature-resistant-labels.webp" },
       { title: "Strong Adhesion", desc: "Designed for rough metal textures.", longDesc: `Craft
 Heavy-coat (30-40 g/m2) high-tack rubber-based or modified acrylic adhesive via slot-die coating. Flows into microscopic surface roughness. Conformable PE or vinyl face stock molds to irregular contours.
 
@@ -258,7 +258,7 @@ Specifications
 - Adhesive: High-tack rubber or modified acrylic (30-40 g/m2)
 - Substrates: Rough metal, textured plastic, PP, PE, powder coat
 - Temperature: -20 C to +120 C
-- Certifications: RoHS, REACH`, img: "https://gozhumeng.com/wp-content/uploads/strong-adhesive-labels-rough-surfaces.webp" },
+- Certifications: RoHS, REACH`, img: "https://img.gozhumeng.com/1781514449220-strong-adhesive-labels-rough-surfaces.webp" },
       { title: "Solvent Resistant", desc: "Lab-grade drum resistance.", longDesc: `Craft
 Chemically inert polyester (PET) film with UV-cured or resin inks. Cross-linked UV-cured varnish topcoat creates molecular barrier. Cross-linked acrylic adhesive resists hydrocarbons, alcohols, acids, and alkalis.
 
@@ -270,13 +270,13 @@ Specifications
 - Adhesive: Cross-linked acrylic, solvent-resistant
 - Chemical Resistance: IPA, acetone, MEK, fuels, pH 2-12
 - Temperature: -20 C to +120 C
-- Certifications: BS 5609 (marine chemical drum), GHS compliant`, img: "https://gozhumeng.com/wp-content/uploads/chemical-solvent-resistant-labels.webp" }
+- Certifications: BS 5609 (marine chemical drum), GHS compliant`, img: "https://img.gozhumeng.com/1781514300707-chemical-solvent-resistant-labels.webp" }
     ]
   },
   {
     category: "Luxury & Custom Craft",
     tagline: "Premium Visual Differentiation",
-    mainImg: "https://gozhumeng.com/wp-content/uploads/zhixin-paper-luxury-gold-foil-thank-you-custom-labels.webp",
+    mainImg: "https://img.gozhumeng.com/1781514545415-zhixin-paper-luxury-gold-foil-thank-you-custom-labels.webp",
     items: [
       { title: "Gold Foil Stamp", desc: "3D metallic finish for luxury.", longDesc: `Craft
 Heated brass or magnesium die transfers metallic foil under controlled temperature (110-150 C), pressure (2-5 tons), and dwell. 24K gold, silver, copper, rose gold, and holographic foils. True 3D debossed metallic surface at 0.1-0.3mm depth.
@@ -289,7 +289,7 @@ Specifications
 - Foil Types: Gold, silver, copper, rose gold, holographic
 - Depth: 0.1-0.3mm 3D deboss
 - Substrates: Coated paper, uncoated textured, BOPP, PET
-- Certifications: ISO 9001, FSC (paper)`, img: "https://gozhumeng.com/wp-content/uploads/gold-foil-stamped-metallic-labels.webp" },
+- Certifications: ISO 9001, FSC (paper)`, img: "https://img.gozhumeng.com/1781514340002-gold-foil-stamped-metallic-labels.webp" },
       { title: "3D Embossed Tags", desc: "Raised tactile depth for wine branding.", longDesc: `Craft
 Matched male-female die set under high pressure (5-15 tons) compresses and raises paper fibers into permanent relief without ink. Multi-level depth from subtle blind emboss to sculptured over 1mm. Premium papers (120-350gsm).
 
@@ -301,7 +301,7 @@ Specifications
 - Die: Matched brass or magnesium male-female set
 - Depth: 0.15-1.2mm relief
 - Paper: Uncoated, cotton, textured (120-350gsm)
-- Certifications: ISO 9001, FSC`, img: "https://gozhumeng.com/wp-content/uploads/3d-embossed-textured-paper-labels.webp" },
+- Certifications: ISO 9001, FSC`, img: "https://img.gozhumeng.com/1781593706781-3d-embossed-textured-paper-labels.jpg" },
       { title: "Clear PET Labels", desc: "Seamless look for glass jars.", longDesc: `Craft
 Reverse-printed ultra-transparent PET film with white backing, CMYK, and spot colors in one pass. Ink encapsulated between film and adhesive - 100% scratch-proof and waterproof. Crystal-clear adhesive over 90% light transmission.
 
@@ -312,7 +312,7 @@ Specifications
 - Material: Ultra-transparent PET film (36-50 micron)
 - Adhesive: Crystal-clear acrylic (90%+ light transmission)
 - Printing: Reverse-print UV flexography, up to 8 colors + white
-- Certifications: FDA (indirect food contact), REACH`, img: "https://gozhumeng.com/wp-content/uploads/clear-no-label-look-pet-stickers.webp" },
+- Certifications: FDA (indirect food contact), REACH`, img: "https://img.gozhumeng.com/1781514304992-clear-no-label-look-pet-stickers.webp" },
       { title: "Kraft Paper Labels", desc: "Recycled fibers for organic feel.", longDesc: `Craft
 FSC-certified unbleached kraft paper (80-150gsm) with soy-based or vegetable-based inks. Natural brown fiber texture preserved - no bleaching. Light-touch flexography with biodegradable matte varnish or raw finish.
 
@@ -324,7 +324,7 @@ Specifications
 - Inks: Soy-based or vegetable-based, low-VOC
 - Finish: Raw uncoated, matte varnish, or biodegradable laminate
 - Adhesive: Permanent or removable acrylic
-- Certifications: FSC, compostable adhesive option, soy-ink certified`, img: "https://gozhumeng.com/wp-content/uploads/rustic-brown-kraft-paper-labels-eco-friendly.webp" },
+- Certifications: FSC, compostable adhesive option, soy-ink certified`, img: "https://img.gozhumeng.com/1781514416936-rustic-brown-kraft-paper-labels-eco-friendly.webp" },
       { title: "Spot UV Finish", desc: "Contrast pop for luxury boxes.", longDesc: `Craft
 Two-stage process: matte laminate base, then high-gloss UV-curable varnish applied via screen printing or digital spot UV at +/-0.2mm registration. UV varnish instantly cured to create raised, glass-like gloss layer.
 
@@ -336,7 +336,7 @@ Specifications
 - Registration: +/-0.2mm precision
 - Contrast: High-gloss UV (80+ GU) on matte (5-15 GU)
 - Thickness: 20-80 micron raised UV layer
-- Certifications: ISO 9001, low-VOC UV varnish`, img: "https://gozhumeng.com/wp-content/uploads/spot-uv-gloss-matte-finish-labels.webp" }
+- Certifications: ISO 9001, low-VOC UV varnish`, img: "https://img.gozhumeng.com/1781514441161-spot-uv-gloss-matte-finish-labels.webp" }
     ]
   }
 ];

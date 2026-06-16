@@ -31,8 +31,7 @@ export const LogisticsShowcase: React.FC<LogisticsShowcaseProps> = ({ resolvedUr
 
         .zx-logistics-visual {
           width: 100%;
-          aspect-ratio: 16 / 7;
-          min-height: 320px;
+          aspect-ratio: 16 / 9;
           background: #dfe9ec;
         }
 
