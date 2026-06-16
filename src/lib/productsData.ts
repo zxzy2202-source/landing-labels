@@ -191,18 +191,20 @@ Specifications
 - Customization: Serial numbers, barcodes, QR codes, holographic
 - Adhesive: Ultra-high-tack permanent, destroys on removal
 - Certifications: ISO 9001, RoHS`, img: "https://gozhumeng.com/wp-content/uploads/tamper-evident-seal-labels-packaging.webp" },
-      { title: "High-tensile Rolls", desc: "Break-resistant automatic liners.", longDesc: `Craft
-Premium glassine or PET release liner with tensile strength over 3.0 kN/m. 5-roller differential silicone coating for consistent release values (25-40 cN/50mm). Micron-level slitting accuracy.
+      { title: "Thermal Labels", desc: "Fast-print rolls for barcode and shipping systems.", longDesc: `Craft
+High-sensitivity direct thermal face stock engineered for stable, ribbon-free printing. Clean slit edges and balanced winding tension help maintain smooth dispensing on automatic labeling and logistics printing lines. Optional top-coated construction improves resistance to scratching, smudging, and light moisture exposure.
 
 Function
-Built for 24/7 lines at 300+ bottles per minute. Break-resistant liner eliminates the number one cause of unplanned line stoppages. Maintains integrity through sharp peel angles and high-tension applicators.
+Supports high-speed label output for shipping labels, barcode stickers, warehouse identification, carton tracking, and inventory control. Produces dark, readable images with strong scan performance, helping reduce print interruptions and improve workflow efficiency across retail and industrial environments.
 
 Specifications
-- Liner: Super-calendered glassine (62gsm) or PET (36 micron)
-- Tensile Strength: Over 3.0 kN/m (MD), over 2.5 kN/m (CD)
-- Release Value: 25-40 cN/50mm (customizable)
-- Face Stock: Coated paper (80gsm) or white PP (60 micron)
-- Certifications: ISO 9001, FSC (paper liner)`, img: "https://gozhumeng.com/wp-content/uploads/high-tensile-glassine-liner-labels.webp" }
+- Material: Direct thermal paper or synthetic thermal facestock
+- Printing: Direct thermal, no ribbon required
+- Surface: Standard or top-coated thermal finish
+- Core Size: 25mm / 40mm / 76mm
+- Roll OD: Customized for desktop and industrial printers
+- Use Cases: Shipping, warehousing, inventory, barcode, express logistics
+- Certifications: BPA-free options, RoHS, ISO 9001`, img: "/uploads/direct-thermal-labels-high-speed-logistics-rolls.webp" }
     ]
   },
   {
